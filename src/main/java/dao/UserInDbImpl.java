@@ -48,7 +48,7 @@ public class UserInDbImpl implements UserInDb {
     public List<String> fetchData() {
         List<String> list = new ArrayList<>();
         try {
-            Scanner input = new Scanner(new File("C:\\Users\\Ali\\Desktop\\Web app\\Technology1_startup_project\\web\\text.txt"));
+            Scanner input = new Scanner(new File("C:\\Users\\Ali\\Desktop\\app_engine\\web\\text.txt"));
             while (input.hasNext()) {
                 String s = input.nextLine();
                 list.add(s);
@@ -62,7 +62,7 @@ public class UserInDbImpl implements UserInDb {
 
     @Override
     public void postDate(String tekst) {
-        File log = new File("C:\\Users\\Ali\\Desktop\\Web app\\Technology1_startup_project\\web\\text.txt");
+        File log = new File("C:\\Users\\Ali\\Desktop\\app_engine\\web\\text.txt");
 
         try{
             if(!log.exists()){

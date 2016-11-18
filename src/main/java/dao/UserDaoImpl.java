@@ -1,13 +1,16 @@
 package dao;
 
+import java.io.*;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * Created by Ali on 18-11-2016.
  */
+//hvis det ikke virker så skriv (mvn clean install)
 public class UserDaoImpl implements UserInDb{
-
 
     //henter vores database, som vi har lavet.
     // JDBC driver name and database URL
@@ -24,7 +27,6 @@ public class UserDaoImpl implements UserInDb{
     private Statement stmt = null;
 
     public UserDaoImpl() {
-
 
     }
 
@@ -73,7 +75,7 @@ public class UserDaoImpl implements UserInDb{
             rs.close();
             stmt.close();
             conn.close();
-            return user;
+            //return user;
         }catch(SQLException se){
             //Handle errors for JDBC
             se.printStackTrace();
@@ -103,11 +105,41 @@ public class UserDaoImpl implements UserInDb{
 
     @Override
     public List<String> fetchData() {
-        return null;
+        List<String> list = new ArrayList<>();
+        try {
+            Scanner input = new Scanner(new File("C:\\Users\\Ali\\Desktop\\Web app\\Technology1_startup_project\\web\\text.txt"));
+            while (input.hasNext()) {
+                String s = input.nextLine();
+                list.add(s);
+            }
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        }
+
+        return list;
     }
 
     @Override
     public void postDate(String tekst) {
+
+        File log = new File("C:\\Users\\Ali\\Desktop\\Web app\\Technology1_startup_project\\web\\text.txt");
+
+        try{
+            if(!log.exists()){
+                System.out.println("We had to make a new file.");
+                log.createNewFile();
+            }
+
+            FileWriter fileWriter = new FileWriter(log, true);
+
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            bufferedWriter.write(tekst);
+            bufferedWriter.close();
+
+            System.out.println("Done");
+        } catch(IOException e) {
+            System.out.println("COULD NOT POSTDATA.");
+        }
 
     }
 
