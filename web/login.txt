@@ -1,0 +1,7 @@
+username password admin
+faisal   1231       1
+ali      1231       0
+ahmed    1231       1
+mohamed  1231       1
+jens     1231       1
+peter    1231       1

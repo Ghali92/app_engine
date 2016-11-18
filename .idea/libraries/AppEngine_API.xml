@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="AppEngine API">
+    <CLASSES>
+      <root url="file://$MAVEN_REPOSITORY$/com/google/appengine/appengine-java-sdk/1.9.4/appengine-java-sdk/appengine-java-sdk-1.9.4/lib/user" />
+      <root url="file://$MAVEN_REPOSITORY$/com/google/appengine/appengine-java-sdk/1.9.4/appengine-java-sdk/appengine-java-sdk-1.9.4/lib/opt/user/appengine-endpoints/v1" />
+      <root url="file://$MAVEN_REPOSITORY$/com/google/appengine/appengine-java-sdk/1.9.4/appengine-java-sdk/appengine-java-sdk-1.9.4/lib/opt/user/jsr107/v1" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://$MAVEN_REPOSITORY$/com/google/appengine/appengine-java-sdk/1.9.4/appengine-java-sdk/appengine-java-sdk-1.9.4/lib/opt/user/appengine-endpoints/v1" recursive="false" />
+    <jarDirectory url="file://$MAVEN_REPOSITORY$/com/google/appengine/appengine-java-sdk/1.9.4/appengine-java-sdk/appengine-java-sdk-1.9.4/lib/opt/user/jsr107/v1" recursive="false" />
+    <jarDirectory url="file://$MAVEN_REPOSITORY$/com/google/appengine/appengine-java-sdk/1.9.4/appengine-java-sdk/appengine-java-sdk-1.9.4/lib/user" recursive="false" />
+  </library>
+</component>
