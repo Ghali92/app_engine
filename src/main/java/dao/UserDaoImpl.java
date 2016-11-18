@@ -24,6 +24,7 @@ public class UserDaoImpl implements UserInDb{
     private Statement stmt = null;
 
     public UserDaoImpl() {
+        System.out.println();
 
     }
 
