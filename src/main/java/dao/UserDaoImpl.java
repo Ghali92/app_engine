@@ -9,7 +9,15 @@ import java.util.Scanner;
 /**
  * Created by Ali on 18-11-2016.
  */
-//hvis det ikke virker så skriv (mvn clean install)
+/*
+if(det ikke virker) {
+ så skriv (mvn clean install)
+ } else if (det ikke virker igen){
+ så skriv det 3x
+ } else {
+ skriv det indtil du dør.
+ }
+*/
 public class UserDaoImpl implements UserInDb{
 
     //henter vores database, som vi har lavet.

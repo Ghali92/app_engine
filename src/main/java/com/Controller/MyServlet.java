@@ -44,6 +44,7 @@ public class MyServlet extends HttpServlet {
             if(user.getRole().equals("admin")){
                 RequestDispatcher a = request.getRequestDispatcher("/admin.jsp");
                 a.include(request, response);
+
             } else {
                 ValidateUser validateUser = new ValidateUser();
                 List<String> list = validateUser.getData();
