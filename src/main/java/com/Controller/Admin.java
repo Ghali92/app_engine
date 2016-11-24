@@ -24,10 +24,12 @@ public class Admin extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         logger.log(Level.INFO, "doPost start...");
-        logger.log(Level.INFO, "textarea: " + request.getParameter("textarea"));
-        response.setContentType("text/html");
+        //logger.log(Level.INFO, "textarea: " + request.getParameter("textarea"));
+        logger.log(Level.INFO, "button1: " + request.getParameter("button1"));
+//        response.setContentType("text/html");
 
-        String s = request.getParameter("textarea");
+        //String s = request.getParameter("textarea");
+        String s = request.getParameter("button1");
 
 //        PrintWriter file = new PrintWriter("C:\\Users\\Ali\\Desktop\\Web app\\Technology1_startup_project\\web\\text.txt");
 //        file.println(s);
@@ -40,9 +42,13 @@ public class Admin extends HttpServlet {
         HttpSession session = request.getSession();
         session.setAttribute("list", list);
 
-        RequestDispatcher a = request.getRequestDispatcher("/posted.jsp");
-        a.include(request, response);
+       RequestDispatcher a = request.getRequestDispatcher("/Opret.jsp");
+       a.include(request, response);
 
+       /* if (request.getParameter("buttom1") != null) {
+            RequestDispatcher a = request.getRequestDispatcher("posted.jsp");
+            a.include(request, response);
+        }*/
 
     }
 

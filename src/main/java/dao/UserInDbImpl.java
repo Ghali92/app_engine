@@ -82,4 +82,10 @@ public class UserInDbImpl implements UserInDb {
         }
 
     }
+
+    @Override
+    public void createUser(String password, String username, String role) {
+
+    }
+
 }

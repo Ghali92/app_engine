@@ -10,4 +10,5 @@ public interface UserInDb {
     public User fetchUser(String username, String password);
     public List<String> fetchData();
     public void postDate(String tekst);
+    public void createUser(String password, String username, String role);
 }

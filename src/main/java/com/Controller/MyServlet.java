@@ -20,7 +20,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Created by faisaljarkass on 19/08/16.
+ * Created by  on 19/08/16.
  * mvn appengine:update
  * mvn appengine:devserver
  */
@@ -42,8 +42,9 @@ public class MyServlet extends HttpServlet {
         // ændring på koden
         if (user != null) {
             if(user.getRole().equals("admin")){
-                RequestDispatcher a = request.getRequestDispatcher("/admin.jsp");
+                RequestDispatcher a = request.getRequestDispatcher("/Admin_Menu.jsp");
                 a.include(request, response);
+
 
             } else {
                 ValidateUser validateUser = new ValidateUser();

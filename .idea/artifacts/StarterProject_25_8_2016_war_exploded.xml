@@ -8,7 +8,6 @@
           <element id="module-output" name="StarterProject_25_8_2016" />
         </element>
         <element id="directory" name="lib">
-          <element id="library" level="project" name="AppEngine API" />
           <element id="library" level="project" name="Maven: jstl:jstl:1.2" />
           <element id="library" level="project" name="Maven: javax.inject:javax.inject:1" />
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.30" />
