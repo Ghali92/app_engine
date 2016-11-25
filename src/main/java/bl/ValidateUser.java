@@ -35,6 +35,19 @@ public class ValidateUser implements Myvalidate, OpretUser {
         userInDb.postDate(tekst);
     }
 
+    @Override
+    public List<User> getUsersForAdmin() {
+        userInDb = new UserInDbImpl();
+        return userInDb.getUsersForAdmin();
+    }
+
+    @Override
+    public void delUser(String userName) {
+        UserDaoImpl a = new UserDaoImpl();
+        a.delUser(userName);
+    }
+
+
     private boolean myValidatePw(String pw, String cPw) {
         if (pw.equals(cPw)) {
             return true;

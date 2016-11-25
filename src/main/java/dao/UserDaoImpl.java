@@ -154,8 +154,6 @@ public class UserDaoImpl implements UserInDb{
     }
 
     public void createUser(String username, String password, String role ) {
-        User user = new User();
-        boolean test = false;
         try{
             Class.forName(JDBC_DRIVER);
             //STEP 3: Open a connection
@@ -167,10 +165,15 @@ public class UserDaoImpl implements UserInDb{
             System.out.println("Creating statement...");
             //her bruger vi denne kode til at lave statment til sql
             stmt = conn.createStatement();
-            String sql;
+            String sql = null;
             //sql = "SELECT * from login";
             //her bruger vi sql kode til at teste om user og pass
-            sql = "INSERT INTO login (username, password, role) VALUES('" + username + "','" + password + "','" + role + "')";
+            if (username.equals("") || password.equals("") || role.equals("") ){
+                stmt.close();
+                conn.close();
+            } else {
+                sql = "INSERT INTO login (username, password, role) VALUES('" + username + "','" + password + "','" + role + "')";
+            }
 
             //denne kode bruges til at hente data fra databasen.
             stmt.executeUpdate(sql);
@@ -203,5 +206,57 @@ public class UserDaoImpl implements UserInDb{
 
     }
 
+    @Override
+    public List<User> getUsersForAdmin() {
+        return null;
+    }
+
+    @Override
+    public void delUser(String username){
+        try{
+            Class.forName(JDBC_DRIVER);
+            //STEP 3: Open a connection
+            System.out.println("Connecting to database...");
+            //her forbinder vi til vores database.(med ali's kode)
+            conn = DriverManager.getConnection(DB_URL,USER,PASS);
+
+            //STEP 4: Execute a query
+            System.out.println("Creating statement...");
+            //her bruger vi denne kode til at lave statment til sql
+            stmt = conn.createStatement();
+            String sql;
+            //sql = "SELECT * from login";
+            //her bruger vi sql kode til at teste om user og pass
+            sql = "DELETE FROM login WHERE username='" + username + "'";
+            //DELETE FROM customers WHERE id = 1
+
+            //denne kode bruges til at hente data fra databasen.
+            stmt.executeUpdate(sql);
+
+            stmt.close();
+            conn.close();
+            //return user;
+        }catch(SQLException se){
+            //Handle errors for JDBC
+            se.printStackTrace();
+        }catch(Exception e){
+            //Handle errors for Class.forName
+            e.printStackTrace();
+        }finally{
+            //finally block used to close resources
+            try{
+                if(stmt!=null)
+                    stmt.close();
+            }catch(SQLException se2){
+            }// nothing we can do
+            try{
+                if(conn!=null)
+                    conn.close();
+            }catch(SQLException se){
+                se.printStackTrace();
+            }//end finally try
+        }//end try
+        System.out.println("Goodbye!");
+    }
 
 }

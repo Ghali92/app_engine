@@ -1,6 +1,7 @@
 package com.Controller;
 
 import bl.ValidateUser;
+import dao.User;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -22,34 +23,63 @@ public class Admin extends HttpServlet {
 
     private static Logger logger = Logger.getLogger(MyServlet.class.getName());
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
         logger.log(Level.INFO, "doPost start...");
-        //logger.log(Level.INFO, "textarea: " + request.getParameter("textarea"));
-        logger.log(Level.INFO, "button1: " + request.getParameter("button1"));
-//        response.setContentType("text/html");
 
-        //String s = request.getParameter("textarea");
-        String s = request.getParameter("button1");
+        logger.log(Level.INFO, "Username: " + request.getParameter("username"));
+        logger.log(Level.INFO, "Password: " + request.getParameter("password"));
+        logger.log(Level.INFO, "Checkbox: " + request.getParameter("confirmpassword"));
+        logger.log(Level.INFO, "Checkbox: " + request.getParameter("role"));
 
-//        PrintWriter file = new PrintWriter("C:\\Users\\Ali\\Desktop\\Web app\\Technology1_startup_project\\web\\text.txt");
-//        file.println(s);
-//        file.close();
-
+        String s1 = request.getParameter("username");
+        String s2 = request.getParameter("password");
+        String s3 = request.getParameter("confirmpassword");
+        String s4 = request.getParameter("role");
+//Opretservlet -> Business -> doa -> Database. og så sender database tilbage samme vej step by step
         ValidateUser validateUser = new ValidateUser();
-        validateUser.postDate(s);
+        if (validateUser.createUser(s1, s2, s3, s4) == false) {
+            PrintWriter out = resp.getWriter();
+            out.print("    <script>\n" +
+                    "    window.alert(\"ikke samme kode\");\n" +
+                    "</script>");
+            RequestDispatcher a = request.getRequestDispatcher("Opret.jsp");
+            a.include(request, resp);
 
-        List<String> list = validateUser.getData();
-        HttpSession session = request.getSession();
-        session.setAttribute("list", list);
+        } else if (s1.equals("") || s2.equals("") || s3.equals("") || s4.equals("")) {
+            PrintWriter out = resp.getWriter();
+            out.print("    <script>\n" +
+                    "    window.alert(\"mangler at udfyld\");\n" +
+                    "</script>");
+            RequestDispatcher a = request.getRequestDispatcher("Opret.jsp");
+            a.include(request, resp);
+        }
 
-       RequestDispatcher a = request.getRequestDispatcher("/Opret.jsp");
-       a.include(request, response);
-
-       /* if (request.getParameter("buttom1") != null) {
-            RequestDispatcher a = request.getRequestDispatcher("posted.jsp");
-            a.include(request, response);
-        }*/
 
     }
 
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        logger.log(Level.INFO, "The Query: " +  request.getQueryString());
+        logger.log(Level.INFO, "doGet start...");
+
+        if(request.getQueryString().equals("button1=opret")){
+            RequestDispatcher a = request.getRequestDispatcher("Opret.jsp");
+            a.include(request, response);
+        }
+        else if (request.getQueryString().equals("button2=slet")){
+            ValidateUser validateUser = new ValidateUser();
+            List<User> list = validateUser.getUsersForAdmin();
+            HttpSession session = request.getSession();
+            session.setAttribute("list", list);
+            validateUser.delUser(request.getParameter("delete"));
+            RequestDispatcher a = request.getRequestDispatcher("Slet.jsp");
+            a.include(request, response);
+        }
+        else if(request.getQueryString().equals("button3=opdater")){
+            RequestDispatcher a = request.getRequestDispatcher("Opdater.jsp");
+            a.include(request, response);
+        }
+
+    }
 }

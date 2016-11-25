@@ -11,7 +11,7 @@
     <title>Opret_User</title>
 </head>
 <body>
-<form method="post" action="OpretServlet">
+<form method="post" action="Admin">
     Username:<br>
     <input type="text" name="username">
     <br>
