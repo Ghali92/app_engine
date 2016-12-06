@@ -15,16 +15,18 @@
 
 Her er dine users :-)
 </br>
-<form method="post" action="Admin">
-<c:forEach items="${list}" var="data">
-    <br>
-    <tr>
-        <td name="delete">${data.username}</td>
-        <td>${data.role}</td>
-        <button type="submit" onclick="alert('Slettet!')">Slet Bruger</button>
 
-    </tr>
-</c:forEach>
+<c:forEach items="${list}" var="data">
+    <form method="get" action="${pageContext.request.contextPath}/Admin?delete=true">
+        <input type="hidden" name="username" value="${data.username}"/>
+        <br>
+        <tr>
+            <td>${data.username}</td>
+            <td>${data.role}</td>
+            <button name="deleteButton" value="delete" type="submit" onclick="alert('Slettet!')" >Slet Bruger</button>
+        </tr>
     </form>
+</c:forEach>
+
 </body>
 </html>

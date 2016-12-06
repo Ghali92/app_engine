@@ -55,31 +55,35 @@ public class Admin extends HttpServlet {
             a.include(request, resp);
         }
 
-
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        logger.log(Level.INFO, "The Query: " +  request.getQueryString());
+        logger.log(Level.INFO, "The Query: " + request.getQueryString());
         logger.log(Level.INFO, "doGet start...");
 
-        if(request.getQueryString().equals("button1=opret")){
+        String[] array = request.getQueryString().split("&");
+        logger.log(Level.INFO, "The array: " + array);
+
+
+        if (request.getQueryString().equals("button1=opret")) {
             RequestDispatcher a = request.getRequestDispatcher("Opret.jsp");
             a.include(request, response);
-        }
-        else if (request.getQueryString().equals("button2=slet")){
+        } else if (request.getQueryString().equals("button2=slet")) {
             ValidateUser validateUser = new ValidateUser();
             List<User> list = validateUser.getUsersForAdmin();
             HttpSession session = request.getSession();
             session.setAttribute("list", list);
-            validateUser.delUser(request.getParameter("delete"));
             RequestDispatcher a = request.getRequestDispatcher("Slet.jsp");
             a.include(request, response);
-        }
-        else if(request.getQueryString().equals("button3=opdater")){
+        } else if (request.getQueryString().equals("button3=opdater")) {
             RequestDispatcher a = request.getRequestDispatcher("Opdater.jsp");
             a.include(request, response);
+        } else if (request.getQueryString().equals("deleteButton=delete")) {
+            logger.log(Level.INFO, "The Query: " + request.getQueryString());
         }
-
     }
+
+
+
 }

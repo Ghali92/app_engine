@@ -16,6 +16,11 @@
 <head>
     <title>Admin Menu</title>
     <style>
+        body{
+            margin: 0 auto;
+            width: 960px;
+            height: auto;
+        }
         ul {
             list-style-type: none;
             margin: 0;
@@ -36,15 +41,12 @@
             text-decoration: none;
         }
 
-        li a:hover:not(.active) {
+        li a:hover {
             background-color: #111;
-        }
-
-        .active {
-            background-color: #4CAF50;
         }
     </style>
 </head>
+
 <body>
 <%--<form action="${pageContext.request.contextPath}/Admin" method="post">--%>
     <%--<ul>--%>
@@ -53,22 +55,21 @@
         <%--<button type="button3" name="button3" type="submit">Opdater bruger</button>--%>
     <%--</ul>--%>
 <%--</form>--%>
+<ul>
+    <div class="test">
 <form action="${pageContext.request.contextPath}/Admin?opret=true" method="get">
-    <ul>
         <button class="active" type="button1" name="button1" type="submit" value="opret">Opret Bruger</button>
-    </ul>
-</form>
-<form action="${pageContext.request.contextPath}/Admin?slet=true" method="get">
-    <ul>
-        <button type="button2" name="button2" type="submit" value="slet">Slet Bruger</button>
-    </ul>
-</form>
-<form action="${pageContext.request.contextPath}/Admin?opdater=true" method="get">
-    <ul>
-        <button type="button3" name="button3" type="submit" value="opdater">Opdater bruger</button>
-    </ul>
 </form>
 
+<form action="${pageContext.request.contextPath}/Admin?slet=true" method="get">
+        <button type="button2" name="button2" type="submit" value="slet">Slet Bruger</button>
+</form>
+
+<form action="${pageContext.request.contextPath}/Admin?opdater=true" method="get">
+        <button type="button3" name="button3" type="submit" value="opdater">Opdater bruger</button>
+</form>
+    </div>
+</ul>
 </body>
 </html>
 

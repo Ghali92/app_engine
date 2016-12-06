@@ -39,7 +39,6 @@ public class MyServlet extends HttpServlet {
         Myvalidate myvalidate = new ValidateUser();
         User user = myvalidate.validateUser(request.getParameter("username"), request.getParameter("password"));
 
-        // ændring på koden
         if (user != null) {
             if(user.getRole().equals("admin")){
                 RequestDispatcher a = request.getRequestDispatcher("/Admin_Menu.jsp");
