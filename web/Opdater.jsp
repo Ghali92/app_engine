@@ -12,7 +12,19 @@
 </head>
 <body>
 
-<button type="button" onclick="alert('Hello world!')">Opdater Bruger</button>
+</br>
+
+<c:forEach items="${list}" var="data">
+    <form method="get" action="${pageContext.request.contextPath}/Admin?Opateret=true">
+        <input type="hidden" name="username" value="${data.username}"/>
+        <br>
+        <td>${data.username}</td>
+        <td>${data.role}</td>
+        <button name="Opdater" value="Opdateret" type="submit" onclick="alert('Opdateret!')" >Opdater Bruger</button>
+        </tr>
+    </form>
+</c:forEach>
+<tr>
 
 </body>
 </html>

@@ -56,7 +56,9 @@ public class ValidateUser implements Myvalidate, OpretUser {
     }
 
     @Override
-    public boolean createUser(String username, String password, String confirmpassword, String role) {
+    public boolean createUser(String username,
+                              String password, String confirmpassword,
+                              String role) {
         UserDaoImpl dg = new UserDaoImpl();
         if (myValidatePw(password, confirmpassword)) {
             dg.createUser(username, password, role);

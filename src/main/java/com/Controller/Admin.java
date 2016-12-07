@@ -2,6 +2,7 @@ package com.Controller;
 
 import bl.ValidateUser;
 import dao.User;
+import dao.UserDaoImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -24,7 +25,7 @@ public class Admin extends HttpServlet {
     private static Logger logger = Logger.getLogger(MyServlet.class.getName());
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         logger.log(Level.INFO, "doPost start...");
 
         logger.log(Level.INFO, "Username: " + request.getParameter("username"));
@@ -39,21 +40,25 @@ public class Admin extends HttpServlet {
 //Opretservlet -> Business -> doa -> Database. og så sender database tilbage samme vej step by step
         ValidateUser validateUser = new ValidateUser();
         if (validateUser.createUser(s1, s2, s3, s4) == false) {
-            PrintWriter out = resp.getWriter();
+            PrintWriter out = response.getWriter();
             out.print("    <script>\n" +
                     "    window.alert(\"ikke samme kode\");\n" +
                     "</script>");
             RequestDispatcher a = request.getRequestDispatcher("Opret.jsp");
-            a.include(request, resp);
+            a.include(request, response);
 
         } else if (s1.equals("") || s2.equals("") || s3.equals("") || s4.equals("")) {
-            PrintWriter out = resp.getWriter();
+            PrintWriter out = response.getWriter();
             out.print("    <script>\n" +
                     "    window.alert(\"mangler at udfyld\");\n" +
                     "</script>");
             RequestDispatcher a = request.getRequestDispatcher("Opret.jsp");
-            a.include(request, resp);
+            a.include(request, response);
+        } else {
+            RequestDispatcher a = request.getRequestDispatcher("Opret.jsp");
+            a.include(request, response);
         }
+
 
     }
 
@@ -63,7 +68,10 @@ public class Admin extends HttpServlet {
         logger.log(Level.INFO, "doGet start...");
 
         String[] array = request.getQueryString().split("&");
-        logger.log(Level.INFO, "The array: " + array);
+        for (int i = 0; i < array.length; i++){
+            logger.log(Level.INFO, "The array: " + array[i]);
+        }
+
 
 
         if (request.getQueryString().equals("button1=opret")) {
@@ -76,14 +84,26 @@ public class Admin extends HttpServlet {
             session.setAttribute("list", list);
             RequestDispatcher a = request.getRequestDispatcher("Slet.jsp");
             a.include(request, response);
-        } else if (request.getQueryString().equals("button3=opdater")) {
+        } else if (array[1].equals("Opdater=Opdateret")) {
+            ValidateUser validateUser = new ValidateUser();
+            List<User> list = validateUser.getUsersForAdmin();
+            HttpSession session = request.getSession();
+            session.setAttribute("list", list);
             RequestDispatcher a = request.getRequestDispatcher("Opdater.jsp");
             a.include(request, response);
-        } else if (request.getQueryString().equals("deleteButton=delete")) {
-            logger.log(Level.INFO, "The Query: " + request.getQueryString());
+        } else if (array[1].equals("deleteButton=delete")) {
+            logger.log(Level.INFO, "HEEEEESSSSSTTTT!!!!! " + request.getQueryString());
+            UserDaoImpl sfsdh = new UserDaoImpl();
+            String[] hafuif = array[0].split("=");
+            sfsdh.delUser(hafuif[1]);
+
+            ValidateUser validateUser = new ValidateUser();
+            List<User> list = validateUser.getUsersForAdmin();
+            HttpSession session = request.getSession();
+            session.setAttribute("list", list);
+
+            RequestDispatcher a = request.getRequestDispatcher("Slet.jsp");
+            a.include(request, response);
         }
     }
-
-
-
 }
