@@ -259,4 +259,9 @@ public class UserDaoImpl implements UserInDb{
         System.out.println("Goodbye!");
     }
 
+    @Override
+    public List<Vagter> fetchVagter() {
+        return null;
+    }
+
 }

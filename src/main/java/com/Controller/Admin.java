@@ -1,8 +1,11 @@
 package com.Controller;
 
+import bl.Vagt;
+import bl.VagtImpl;
 import bl.ValidateUser;
 import dao.User;
 import dao.UserDaoImpl;
+import dao.Vagter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.*;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -68,10 +70,9 @@ public class Admin extends HttpServlet {
         logger.log(Level.INFO, "doGet start...");
 
         String[] array = request.getQueryString().split("&");
-        for (int i = 0; i < array.length; i++){
+        for (int i = 0; i < array.length; i++) {
             logger.log(Level.INFO, "The array: " + array[i]);
         }
-
 
 
         if (request.getQueryString().equals("button1=opret")) {
@@ -84,6 +85,30 @@ public class Admin extends HttpServlet {
             session.setAttribute("list", list);
             RequestDispatcher a = request.getRequestDispatcher("Slet.jsp");
             a.include(request, response);
+
+        } else if (request.getQueryString().equals("button4=vis_skema")) {
+//            ValidateUser validateUser = new ValidateUser();
+//            List<User> list = validateUser.getUsersForAdmin();
+//            HttpSession session = request.getSession();
+//            session.setAttribute("list", list);
+            Vagt vagt = new VagtImpl();
+            List<Vagter> list = vagt.fetchAll();
+
+
+//            list.add(new Vagter("6-9", "Faisal"));
+//            list.add(new Vagter("9-12", "Ali"));
+//            list.add(new Vagter("12-15", "Ahmad"));
+//            list.add(new Vagter("15-18", "Ahmed"));
+//            list.add(new Vagter("18-21", "Mohamed"));
+
+
+            HttpSession session = request.getSession();
+            session.setAttribute("list", list);
+
+            RequestDispatcher a = request.getRequestDispatcher("VagtSkema.jsp");
+            a.include(request, response);
+
+
         } else if (array[1].equals("Opdater=Opdateret")) {
             ValidateUser validateUser = new ValidateUser();
             List<User> list = validateUser.getUsersForAdmin();

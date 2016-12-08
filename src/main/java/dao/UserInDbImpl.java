@@ -180,6 +180,10 @@ public class UserInDbImpl implements UserInDb {
 
     }
 
+    @Override
+    public List<Vagter> fetchVagter() {
+        return null;
+    }
 
 
 }

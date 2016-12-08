@@ -19,5 +19,7 @@ public interface UserInDb {
 
     public void delUser(String username);
 
+    public List<Vagter> fetchVagter();
+
 
 }
