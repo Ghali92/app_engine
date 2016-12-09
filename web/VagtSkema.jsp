@@ -10,27 +10,17 @@
 <html>
 <head>
     <title>VagtSkema</title>
-    <style>
-        table {
-            font-family: arial, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        td, th {
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 8px;
-        }
-
-        tr:nth-child(even) {
-            background-color: #dddddd;
-        }
-    </style>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-
-<table>
+<div class="container">
+    <div class="jumbotron">
+        <h1>Velkommen til Ali's frugt og grønt.</h1>
+        <p>I Ali's frugt og grønt system giver muligheden for at have god kommunikation, og hold styr på medarbejderens vagtdage. </p>
+    </div>
+    <p>Her ser vi admin menuen, hvor man kan vælge de forskellige funktioner.</p>
+</div>
+<table class="table table-striped table-hover">
     <tr>
         <th>Tid</th>
         <th>Mandag</th>
@@ -44,17 +34,33 @@
     <c:forEach items="${list}" var="data">
     <tr>
         <td>${data.tid}</td>
-        <td>${data.navn}</td>
-        <td>${data.navn}</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>${data.mandag}</td>
+        <td>${data.tirsdag}</td>
+        <td>${data.onsdag}</td>
+        <td>${data.torsdag}</td>
+        <td>${data.fredag}</td>
     </tr>
     </c:forEach>
 
 
 </table>
+
+<div class="footer-bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div class="copyright">
+                    © 2016, Ali, Ahmed, Mohamed og Ahmad, All rights reserved
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div class="design">
+                    <a href="#">Franchisee </a> | <a target="_blank" href="http://www.google.com"> Google</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>

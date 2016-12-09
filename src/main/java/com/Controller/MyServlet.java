@@ -1,8 +1,11 @@
 package com.Controller;
 
 import bl.Myvalidate;
+import bl.Vagt;
+import bl.VagtImpl;
 import bl.ValidateUser;
 import dao.User;
+import dao.Vagter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -45,12 +48,18 @@ public class MyServlet extends HttpServlet {
                 a.include(request, response);
 
 
-            } else {
-                ValidateUser validateUser = new ValidateUser();
+            } else if (user.getRole().equals("user")) {
+               /* ValidateUser validateUser = new ValidateUser();
                 List<String> list = validateUser.getData();
                 HttpSession session = request.getSession();
                 session.setAttribute("list", list);
                 RequestDispatcher a = request.getRequestDispatcher("/user.jsp");
+                a.include(request, response);*/
+                Vagt vagt = new VagtImpl();
+                List<Vagter> list = vagt.fetchAll();
+                HttpSession session = request.getSession();
+                session.setAttribute("list", list);
+                RequestDispatcher a = request.getRequestDispatcher("VagtSkema.jsp");
                 a.include(request, response);
             }
 

@@ -261,7 +261,77 @@ public class UserDaoImpl implements UserInDb{
 
     @Override
     public List<Vagter> fetchVagter() {
-        return null;
+        {
+            List<Vagter> vagter = new ArrayList<>();
+
+            boolean test = false;
+            try{
+                Class.forName(JDBC_DRIVER);
+                //STEP 3: Open a connection
+                System.out.println("Connecting to database...");
+                //her forbinder vi til vores database.(med ali's kode)
+                conn = DriverManager.getConnection(DB_URL,USER,PASS);
+
+                //STEP 4: Execute a query
+                //her bruger vi denne kode til at lave statment til sql
+                stmt = conn.createStatement();
+                String sql;
+                //sql = "SELECT * from login";
+                //her bruger vi sql kode til at teste om user og pass
+                sql = "SELECT * FROM Skema";
+
+                //denne kode bruges til at hente data fra databasen.
+                ResultSet rs = stmt.executeQuery(sql);
+
+                //STEP 5: Extract data from result set
+                //køre vi igennem vores kolonner i vores tabel. men tager fat i kun en user
+                while(rs.next()){
+                    //Retrieve by column name
+                    Vagter vagt  = new Vagter();
+                    vagt.setTid(rs.getString("Tid"));
+                    vagt.setMandag(rs.getString("Mandag"));
+                    vagt.setTirsdag(rs.getString("Tirsdag"));
+                    vagt.setOnsdag(rs.getString("Onsdag"));
+                    vagt.setTorsdag(rs.getString("Torsdag"));
+                    vagt.setFredag(rs.getString("Fredag"));
+
+
+                    test = true;
+                    vagter.add(vagt);
+
+                }
+                //STEP 6: Clean-up environment
+                //her lukker vi alt forbindelse med vores database.
+                rs.close();
+                stmt.close();
+                conn.close();
+                //return user;
+            }catch(SQLException se){
+                //Handle errors for JDBC
+                se.printStackTrace();
+            }catch(Exception e){
+                //Handle errors for Class.forName
+                e.printStackTrace();
+            }finally{
+                //finally block used to close resources
+                try{
+                    if(stmt!=null)
+                        stmt.close();
+                }catch(SQLException se2){
+                }// nothing we can do
+                try{
+                    if(conn!=null)
+                        conn.close();
+                }catch(SQLException se){
+                    se.printStackTrace();
+                }//end finally try
+            }//end try
+            System.out.println("Goodbye!");
+            if (test){
+                return vagter;
+            }
+            return null;
+        }
     }
 
 }

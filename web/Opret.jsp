@@ -9,22 +9,68 @@
 <html>
 <head>
     <title>Opret_User</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<form method="post" action="Admin">
-    Username:<br>
-    <input type="text" name="username">
-    <br>
-    Password:<br>
-    <input type="password" name="password">
-    <br>
-    Confirm Password:<br>
-    <input type="password" name="confirmpassword">
-    <br>
-    Role:<br>
-    <input type="text" name="role">
-    <br><br>
-    <input type="submit">
-</form>
+
+<div class="container">
+    <div class="jumbotron">
+        <h1>Velkommen til Ali's frugt og grønt.</h1>
+        <p>I Ali's frugt og grønt system giver muligheden for at have god kommunikation, og hold styr på medarbejderens
+            vagtdage. </p>
+    </div>
+    <p>Her kan Admin oprette ny bruger.</p>
+</div>
+
+
+<div class="container">
+    <form method="post" action="Admin" class="form-inline">
+        <div class="form-group">
+            Username:<br>
+            <input class="form-control" type="text" name="username">
+        </div>
+
+        <br>
+
+        <div class="form-group">
+            Password:<br>
+            <input class="form-control" type="password" name="password">
+        </div>
+        <br>
+
+        <div class="form-group">
+            Confirm Password:<br>
+            <input class="form-control" type="password" name="confirmpassword">
+        </div>
+        <br>
+
+        <div class="form-group">
+            Role:<br>
+            <input class="form-control" type="text" name="role">
+        </div>
+        <br>
+        <button class="btn btn-primary" type="submit"> Submit</button>
+
+    </form>
+</div>
+
+<div class="footer-bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div class="copyright">
+                    © 2016, Ali, Ahmed, Mohamed og Ahmad, All rights reserved
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div class="design">
+                    <a href="#">Franchisee </a> | <a target="_blank" href="http://www.google.com"> Google</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

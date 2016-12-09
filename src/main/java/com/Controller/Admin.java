@@ -87,28 +87,12 @@ public class Admin extends HttpServlet {
             a.include(request, response);
 
         } else if (request.getQueryString().equals("button4=vis_skema")) {
-//            ValidateUser validateUser = new ValidateUser();
-//            List<User> list = validateUser.getUsersForAdmin();
-//            HttpSession session = request.getSession();
-//            session.setAttribute("list", list);
             Vagt vagt = new VagtImpl();
             List<Vagter> list = vagt.fetchAll();
-
-
-//            list.add(new Vagter("6-9", "Faisal"));
-//            list.add(new Vagter("9-12", "Ali"));
-//            list.add(new Vagter("12-15", "Ahmad"));
-//            list.add(new Vagter("15-18", "Ahmed"));
-//            list.add(new Vagter("18-21", "Mohamed"));
-
-
             HttpSession session = request.getSession();
             session.setAttribute("list", list);
-
             RequestDispatcher a = request.getRequestDispatcher("VagtSkema.jsp");
             a.include(request, response);
-
-
         } else if (array[1].equals("Opdater=Opdateret")) {
             ValidateUser validateUser = new ValidateUser();
             List<User> list = validateUser.getUsersForAdmin();
@@ -116,6 +100,7 @@ public class Admin extends HttpServlet {
             session.setAttribute("list", list);
             RequestDispatcher a = request.getRequestDispatcher("Opdater.jsp");
             a.include(request, response);
+
         } else if (array[1].equals("deleteButton=delete")) {
             logger.log(Level.INFO, "HEEEEESSSSSTTTT!!!!! " + request.getQueryString());
             UserDaoImpl sfsdh = new UserDaoImpl();
