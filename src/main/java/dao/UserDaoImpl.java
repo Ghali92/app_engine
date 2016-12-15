@@ -9,18 +9,8 @@ import java.util.Scanner;
 /**
  * Created by Ali on 18-11-2016.
  */
-/*
-if(det ikke virker) {
- så skriv (mvn clean install)
- } else if (det ikke virker igen){
- så skriv det 3x
- } else {
- skriv det indtil du dør.
- }
 
-
-*/
-public class UserDaoImpl implements UserInDb{
+public class UserDaoImpl implements UserInDb {
 
     //henter vores database, som vi har lavet.
     // JDBC driver name and database URL
@@ -46,12 +36,12 @@ public class UserDaoImpl implements UserInDb{
         //opretter en user objekt.
         User user = new User();
         boolean test = false;
-        try{
+        try {
             Class.forName(JDBC_DRIVER);
             //STEP 3: Open a connection
             System.out.println("Connecting to database...");
             //her forbinder vi til vores database.(med ali's kode)
-            conn = DriverManager.getConnection(DB_URL,USER,PASS);
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
 
             //STEP 4: Execute a query
             System.out.println("Creating statement...");
@@ -60,14 +50,14 @@ public class UserDaoImpl implements UserInDb{
             String sql;
             //sql = "SELECT * from login";
             //her bruger vi sql kode til at teste om user og pass
-            sql = "SELECT * FROM login WHERE username = '" + username + "' AND password = '"+ password + "'";
+            sql = "SELECT * FROM login WHERE username = '" + username + "' AND password = '" + password + "'";
 
             //denne kode bruges til at hente data fra databasen.
             ResultSet rs = stmt.executeQuery(sql);
 
             //STEP 5: Extract data from result set
             //køre vi igennem vores kolonner i vores tabel. men tager fat i kun en user
-            while(rs.next()){
+            while (rs.next()) {
                 //Retrieve by column name
                 user.setUsername(rs.getString("username"));
                 user.setPw(rs.getString("password"));
@@ -76,7 +66,7 @@ public class UserDaoImpl implements UserInDb{
 
                 //Display values
                 System.out.print("username: " + user.getUsername());
-                System.out.print(", password: " + user.getPw() );
+                System.out.print(", password: " + user.getPw());
                 System.out.println(", role: " + user.getRole());
 
             }
@@ -86,30 +76,30 @@ public class UserDaoImpl implements UserInDb{
             stmt.close();
             conn.close();
             //return user;
-        }catch(SQLException se){
+        } catch (SQLException se) {
             //Handle errors for JDBC
             se.printStackTrace();
-        }catch(Exception e){
+        } catch (Exception e) {
             //Handle errors for Class.forName
             e.printStackTrace();
-        }finally{
+        } finally {
             //finally block used to close resources
-            try{
-                if(stmt!=null)
+            try {
+                if (stmt != null)
                     stmt.close();
-            }catch(SQLException se2){
+            } catch (SQLException se2) {
             }// nothing we can do
-            try{
-                if(conn!=null)
+            try {
+                if (conn != null)
                     conn.close();
-            }catch(SQLException se){
+            } catch (SQLException se) {
                 se.printStackTrace();
             }//end finally try
         }//end try
         System.out.println("Goodbye!");
-       if (test){
-           return user;
-       }
+        if (test) {
+            return user;
+        }
         return null;
     }
 
@@ -134,8 +124,8 @@ public class UserDaoImpl implements UserInDb{
 
         File log = new File("C:\\Users\\Ali\\Desktop\\Web app\\Technology1_startup_project\\web\\text.txt");
 
-        try{
-            if(!log.exists()){
+        try {
+            if (!log.exists()) {
                 System.out.println("We had to make a new file.");
                 log.createNewFile();
             }
@@ -147,19 +137,19 @@ public class UserDaoImpl implements UserInDb{
             bufferedWriter.close();
 
             System.out.println("Done");
-        } catch(IOException e) {
+        } catch (IOException e) {
             System.out.println("COULD NOT POSTDATA.");
         }
 
     }
 
-    public void createUser(String username, String password, String role ) {
-        try{
+    public void createUser(String username, String password, String role) {
+        try {
             Class.forName(JDBC_DRIVER);
             //STEP 3: Open a connection
             System.out.println("Connecting to database...");
             //her forbinder vi til vores database.(med ali's kode)
-            conn = DriverManager.getConnection(DB_URL,USER,PASS);
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
 
             //STEP 4: Execute a query
             System.out.println("Creating statement...");
@@ -168,7 +158,7 @@ public class UserDaoImpl implements UserInDb{
             String sql = null;
             //sql = "SELECT * from login";
             //her bruger vi sql kode til at teste om user og pass
-            if (username.equals("") || password.equals("") || role.equals("") ){
+            if (username.equals("") || password.equals("") || role.equals("")) {
                 stmt.close();
                 conn.close();
             } else {
@@ -182,23 +172,23 @@ public class UserDaoImpl implements UserInDb{
             stmt.close();
             conn.close();
             //return user;
-        }catch(SQLException se){
+        } catch (SQLException se) {
             //Handle errors for JDBC
             se.printStackTrace();
-        }catch(Exception e){
+        } catch (Exception e) {
             //Handle errors for Class.forName
             e.printStackTrace();
-        }finally{
+        } finally {
             //finally block used to close resources
-            try{
-                if(stmt!=null)
+            try {
+                if (stmt != null)
                     stmt.close();
-            }catch(SQLException se2){
+            } catch (SQLException se2) {
             }// nothing we can do
-            try{
-                if(conn!=null)
+            try {
+                if (conn != null)
                     conn.close();
-            }catch(SQLException se){
+            } catch (SQLException se) {
                 se.printStackTrace();
             }//end finally try
         }//end try
@@ -212,13 +202,13 @@ public class UserDaoImpl implements UserInDb{
     }
 
     @Override
-    public void delUser(String username){
-        try{
+    public void delUser(String username) {
+        try {
             Class.forName(JDBC_DRIVER);
             //STEP 3: Open a connection
             System.out.println("Connecting to database...");
             //her forbinder vi til vores database.(med ali's kode)
-            conn = DriverManager.getConnection(DB_URL,USER,PASS);
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
 
             //STEP 4: Execute a query
             System.out.println("Creating statement...");
@@ -236,23 +226,23 @@ public class UserDaoImpl implements UserInDb{
             stmt.close();
             conn.close();
             //return user;
-        }catch(SQLException se){
+        } catch (SQLException se) {
             //Handle errors for JDBC
             se.printStackTrace();
-        }catch(Exception e){
+        } catch (Exception e) {
             //Handle errors for Class.forName
             e.printStackTrace();
-        }finally{
+        } finally {
             //finally block used to close resources
-            try{
-                if(stmt!=null)
+            try {
+                if (stmt != null)
                     stmt.close();
-            }catch(SQLException se2){
+            } catch (SQLException se2) {
             }// nothing we can do
-            try{
-                if(conn!=null)
+            try {
+                if (conn != null)
                     conn.close();
-            }catch(SQLException se){
+            } catch (SQLException se) {
                 se.printStackTrace();
             }//end finally try
         }//end try
@@ -265,12 +255,12 @@ public class UserDaoImpl implements UserInDb{
             List<Vagter> vagter = new ArrayList<>();
 
             boolean test = false;
-            try{
+            try {
                 Class.forName(JDBC_DRIVER);
                 //STEP 3: Open a connection
                 System.out.println("Connecting to database...");
                 //her forbinder vi til vores database.(med ali's kode)
-                conn = DriverManager.getConnection(DB_URL,USER,PASS);
+                conn = DriverManager.getConnection(DB_URL, USER, PASS);
 
                 //STEP 4: Execute a query
                 //her bruger vi denne kode til at lave statment til sql
@@ -285,9 +275,9 @@ public class UserDaoImpl implements UserInDb{
 
                 //STEP 5: Extract data from result set
                 //køre vi igennem vores kolonner i vores tabel. men tager fat i kun en user
-                while(rs.next()){
+                while (rs.next()) {
                     //Retrieve by column name
-                    Vagter vagt  = new Vagter();
+                    Vagter vagt = new Vagter();
                     vagt.setTid(rs.getString("Tid"));
                     vagt.setMandag(rs.getString("Mandag"));
                     vagt.setTirsdag(rs.getString("Tirsdag"));
@@ -306,28 +296,28 @@ public class UserDaoImpl implements UserInDb{
                 stmt.close();
                 conn.close();
                 //return user;
-            }catch(SQLException se){
+            } catch (SQLException se) {
                 //Handle errors for JDBC
                 se.printStackTrace();
-            }catch(Exception e){
+            } catch (Exception e) {
                 //Handle errors for Class.forName
                 e.printStackTrace();
-            }finally{
+            } finally {
                 //finally block used to close resources
-                try{
-                    if(stmt!=null)
+                try {
+                    if (stmt != null)
                         stmt.close();
-                }catch(SQLException se2){
+                } catch (SQLException se2) {
                 }// nothing we can do
-                try{
-                    if(conn!=null)
+                try {
+                    if (conn != null)
                         conn.close();
-                }catch(SQLException se){
+                } catch (SQLException se) {
                     se.printStackTrace();
                 }//end finally try
             }//end try
             System.out.println("Goodbye!");
-            if (test){
+            if (test) {
                 return vagter;
             }
             return null;

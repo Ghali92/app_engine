@@ -70,4 +70,7 @@ public class Vagter {
     public void setFredag(String fredag) {
         this.fredag = fredag;
     }
+
+
+
 }

@@ -22,4 +22,5 @@ public interface UserInDb {
     public List<Vagter> fetchVagter();
 
 
+
 }

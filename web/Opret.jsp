@@ -15,10 +15,24 @@
 </head>
 <body>
 
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">My first Web App ;-)</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#">Page 1</a></li>
+            <li><a href="/index.jsp">Log in</a></li>
+            <li><a href="/logout.jsp">Log out</a></li>
+        </ul>
+    </div>
+</nav>
+
 <div class="container">
     <div class="jumbotron">
-        <h1>Velkommen til Ali's frugt og grønt.</h1>
-        <p>I Ali's frugt og grønt system giver muligheden for at have god kommunikation, og hold styr på medarbejderens
+        <h1>Velkommen til Alis frugt og grønt.</h1>
+        <p>I Alis frugt og grønt system giver muligheden for at have god kommunikation, og hold styr på medarbejderens
             vagtdage. </p>
     </div>
     <p>Her kan Admin oprette ny bruger.</p>

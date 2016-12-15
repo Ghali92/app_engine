@@ -49,18 +49,18 @@ public class MyServlet extends HttpServlet {
 
 
             } else if (user.getRole().equals("user")) {
-               /* ValidateUser validateUser = new ValidateUser();
+               ValidateUser validateUser = new ValidateUser();
                 List<String> list = validateUser.getData();
                 HttpSession session = request.getSession();
-                session.setAttribute("list", list);
+                session.setAttribute("listadmin", list);
                 RequestDispatcher a = request.getRequestDispatcher("/user.jsp");
-                a.include(request, response);*/
-                Vagt vagt = new VagtImpl();
-                List<Vagter> list = vagt.fetchAll();
-                HttpSession session = request.getSession();
-                session.setAttribute("list", list);
-                RequestDispatcher a = request.getRequestDispatcher("VagtSkema.jsp");
                 a.include(request, response);
+                Vagt vagt = new VagtImpl();
+                List<Vagter> list2 = vagt.fetchAll();
+                HttpSession session2 = request.getSession();
+                session2.setAttribute("list", list2);
+//                RequestDispatcher a2 = request.getRequestDispatcher("VagtSkema.jsp");
+//                a2.include(request, response);
             }
 
         } else {

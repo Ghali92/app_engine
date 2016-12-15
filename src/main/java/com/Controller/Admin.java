@@ -1,8 +1,6 @@
 package com.Controller;
 
-import bl.Vagt;
-import bl.VagtImpl;
-import bl.ValidateUser;
+import bl.*;
 import dao.User;
 import dao.UserDaoImpl;
 import dao.Vagter;
@@ -34,11 +32,13 @@ public class Admin extends HttpServlet {
         logger.log(Level.INFO, "Password: " + request.getParameter("password"));
         logger.log(Level.INFO, "Checkbox: " + request.getParameter("confirmpassword"));
         logger.log(Level.INFO, "Checkbox: " + request.getParameter("role"));
+        logger.log(Level.INFO, "Textarea: " + request.getParameter("textarea"));
 
         String s1 = request.getParameter("username");
         String s2 = request.getParameter("password");
         String s3 = request.getParameter("confirmpassword");
         String s4 = request.getParameter("role");
+
 //Opretservlet -> Business -> doa -> Database. og så sender database tilbage samme vej step by step
         ValidateUser validateUser = new ValidateUser();
         if (validateUser.createUser(s1, s2, s3, s4) == false) {
@@ -56,10 +56,11 @@ public class Admin extends HttpServlet {
                     "</script>");
             RequestDispatcher a = request.getRequestDispatcher("Opret.jsp");
             a.include(request, response);
-        } else {
+        }  else {
             RequestDispatcher a = request.getRequestDispatcher("Opret.jsp");
             a.include(request, response);
         }
+
 
 
     }
@@ -93,7 +94,7 @@ public class Admin extends HttpServlet {
             session.setAttribute("list", list);
             RequestDispatcher a = request.getRequestDispatcher("VagtSkema.jsp");
             a.include(request, response);
-        } else if (array[1].equals("Opdater=Opdateret")) {
+        } else if (array[0].equals("button3=opdater") || array[1].equals("opdater=opdater")) {
             ValidateUser validateUser = new ValidateUser();
             List<User> list = validateUser.getUsersForAdmin();
             HttpSession session = request.getSession();

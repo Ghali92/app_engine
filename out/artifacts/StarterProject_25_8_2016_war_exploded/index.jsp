@@ -97,8 +97,6 @@
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 
-<H1 class="text-center">My First Web App</H1>
-
 <div class="wrapper">
     <form class="form-signin" method="POST" action="MyServlet">
 
